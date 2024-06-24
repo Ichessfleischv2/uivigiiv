@@ -1,0 +1,74 @@
+local a=game.Players.LocalPlayer.PlayerGui
+local b=Instance.new
+local c=b("ScreenGui")
+c.Name="Wolfhub"
+local d=b("Frame")
+d.Size=UDim2.new(0,300,0,150)
+d.Position=UDim2.new(0,50,0,50)
+d.BackgroundColor3=Color3.new(0.2,0.2,0.2)
+d.BorderColor3=Color3.new(0.4,0.4,0.4)
+local e=b("TextLabel")
+e.Text="From Pet:"
+e.Size=UDim2.new(0,100,0,20)
+e.Position=UDim2.new(0,10,0,10)
+e.BackgroundColor3=Color3.new(0.1,0.1,0.1)
+e.BorderColor3=Color3.new(0.3,0.3,0.3)
+local f=b("TextBox")
+f.Size=UDim2.new(0,150,0,20)
+f.Position=UDim2.new(0,120,0,10)
+f.PlaceholderText="Enter pet name"
+local g=b("TextLabel")
+g.Text="To Pet:"
+g.Size=UDim2.new(0,100,0,20)
+g.Position=UDim2.new(0,10,0,40)
+g.BackgroundColor3=Color3.new(0.1,0.1,0.1)
+g.BorderColor3=Color3.new(0.3,0.3,0.3)
+local h=b("TextBox")
+h.Size=UDim2.new(0,150,0,20)
+h.Position=UDim2.new(0,120,0,40)
+h.PlaceholderText="Enter pet name"
+local i=b("TextButton")
+i.Text="Swap Pets"
+i.Size=UDim2.new(0,100,0,20)
+i.Position=UDim2.new(0,120,0,70)
+i.BackgroundColor3=Color3.new(0.3,0.3,0.3)
+i.BorderColor3=Color3.new(0.5,0.5,0.5)
+local j=b("TextButton")
+j.Text="X"
+j.Size=UDim2.new(0,20,0,20)
+j.Position=UDim2.new(0,260,0,10)
+j.BackgroundColor3=Color3.new(0.7,0.1,0.1)
+j.BorderColor3=Color3.new(0.8,0.2,0.2)
+local k=b("TextButton")
+k.Text="-"
+k.Size=UDim2.new(0,20,0,20)
+k.Position=UDim2.new(0,240,0,10)
+k.BackgroundColor3=Color3.new(0.7,0.7,0.1)
+k.BorderColor3=Color3.new(0.8,0.8,0.2)
+d:AddChild(e)
+d:AddChild(f)
+d:AddChild(g)
+d:AddChild(h)
+d:AddChild(i)
+d:AddChild(j)
+d:AddChild(k)
+c:AddChild(d)
+c.Parent=a
+i.MouseButton1Click:Connect(function()
+  local l=f.Text
+  local m=h.Text
+  for n,o in pairs(lib.Directory.Pets[l])do
+    lib.Directory.Pets[l][n]=nil
+  end
+  for n,o in pairs(lib.Directory.Pets[m])do
+    lib.Directory.Pets[l][n]=o
+  end
+end)
+j.MouseButton1Click:Connect(function()
+  c:Destroy()
+end)
+k.MouseButton1Click:Connect(function()
+  d.Size=UDim2.new(0,300,0,20)
+  wait(0.5)
+  d.Size=UDim2.new(0,300,0,150)
+end)
